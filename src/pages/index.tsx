@@ -10,8 +10,10 @@ import {
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  //140 ~ 1000 => 570
-  const rank = [150];
+  //140 ~ 500 =>
+  const minSpeed = 150;
+  const maxSpeed = 500;
+  const correction = 20;
 
   const toast = useToast();
   const [chance, setChance] = useState(5);
@@ -59,8 +61,11 @@ export default function Home() {
 
   const onBoxClick = () => {
     if (firstClickTime) {
-      setReactionRate(new Date().getTime() - firstClickTime);
-      setRecordScore([...recordScore, new Date().getTime() - firstClickTime]);
+      setReactionRate(new Date().getTime() - firstClickTime - correction);
+      setRecordScore([
+        ...recordScore,
+        new Date().getTime() - firstClickTime - correction,
+      ]);
     }
     setVisual(false);
     setChance(chance - 1);
@@ -165,10 +170,18 @@ export default function Home() {
             상위{" "}
             {Math.floor(
               ((recordScore.reduce((a, b) => a + b, 0) / recordScore.length -
-                150) /
-                850) *
+                minSpeed) /
+                (maxSpeed - minSpeed)) *
                 100
-            )}{" "}
+            ) > maxSpeed
+              ? 100
+              : Math.floor(
+                  ((recordScore.reduce((a, b) => a + b, 0) /
+                    recordScore.length -
+                    minSpeed) /
+                    (maxSpeed - minSpeed)) *
+                    100
+                )}
             %입니다!
           </Text>
           <Button

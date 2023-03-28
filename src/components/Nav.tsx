@@ -14,7 +14,7 @@ export default function Nav() {
         padding: "10px 10px",
       }}
     >
-      <Text fontSize="2xl">반응속도 테스트</Text>
+      <span style={{ fontSize: "1.5rem" }}>반응속도 테스트</span>
     </nav>
   );
 }
