@@ -196,3 +196,5 @@ export default function Home() {
     </Flex>
   );
 }
+
+// 배포: npm run build && npm run export && git add * && git commit && git subtree push --prefix out origin gh-pages
