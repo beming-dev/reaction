@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const debug = process.env.NODE_ENV !== "production";
-const repository = "http://beming-dev.github.io/reaction";
+const repository = "https://beming-dev.github.io/reaction";
 
 const nextConfig = {
   reactStrictMode: true,
